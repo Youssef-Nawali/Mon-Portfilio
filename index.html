@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+
+  <meta charset="UTF-8">
+  <title>Portfolio Youssef</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+    <div id="loader">
+  <h1 class="loader-title">Youssef Nawali</h1>
+</div>
+
+
+  <header class="header">
+    <div class="theme-toggle">
+  <input type="checkbox" id="theme-switch">
+  <label for="theme-switch"><i class="fas fa-moon"></i></label>
+</div>
+
+    <nav class="navbar">
+        
+  <h1>&lt;<span class="highlight">Youssef Nawali</span>/&gt;</h1>
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <i class="fas fa-bars"></i>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#accueil">Accueil</a></li>
+    <li><a href="#apropos">À propos</a></li>
+    <li><a href="#competences">Compétences</a></li>
+    <li><a href="#projets">Projets</a></li>
+    <li><a href="#statistiques">Statistiques</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+    <section id="accueil" class="hero">
+
+      <div class="hero-content">
+        <h2 class="typewriter-text"> Bonjour, je suis <span class="name">Youssef</span> <span class="tag"></h2>
+        <p class="subtitle">Technicien superieur en ingénierie des systèmes informatiques, spécialisée en IoT et systèmes embarqués & Développeur</p>
+        <p class="description">Je transforme les idées en solutions.</p>
+        <div class="buttons">
+          <a href="Youssef Nawali CV.pdf" target="_blank" class="btn primary"><i class="fas fa-file-alt"></i> CV</a>
+          <a href="Lettre_Motivation_Youssef_Nawali.pdf" target="_blank" class="btn light">
+  <i class="fas fa-file-signature"></i> Lettre de Motivation
+</a>
+
+        </div>
+        <div class="socials">
+  <a href="https://www.linkedin.com/in/youssef-nawali-a76386346/" target="_blank" title="Mon LinkedIn">
+    <i class="fab fa-linkedin"></i>
+  </a>
+  <a href="https://github.com/Youssef-Nawali" target="_blank" title="Mon GitHub">
+    <i class="fab fa-github"></i>
+  </a>
+</div>
+
+      </div>
+      <div class="hero-image">
+        <img src="1.jpg" alt="Youssef Nawali">
+      </div>
+    </section>
+    <div class="scroll-down">
+  <a href="#apropos"><i class="fas fa-angle-down"></i></a>
+  
+</div>
+
+  </header>
+
+  <section id="apropos" class="about section-animate">
+  <h2 class="section-title"><span>&lt;</span> À Propos <span>/&gt;</span></h2>
+  <div class="about-container">
+    <div class="about-image">
+      <img src="1.jpg" alt="Youssef Nawali">
+    </div>
+    <div class="about-content">
+      <h3>Je suis <span class="name">Youssef Nawali</span></h3>
+      <p>
+        Passionné par les systèmes informatiques et la technologie, je suis un Technicien superieur en en ingénierie des systèmes informatiques, spécialisée en IoT et systèmes embarqués toujours prêt à relever de nouveaux défis. 
+        Depuis le début de mon parcours académique, j’ai cultivé une grande curiosité pour les domaines liés aux systèmes, aux réseaux, et au développement d’applications.
+      </p>
+      <p>
+        Ma vision est de créer des solutions technologiques innovantes qui répondent aux besoins du monde moderne tout en étant accessibles et intuitives pour les utilisateurs.
+      </p>
+      <ul class="skills-list">
+        <li>Développement Web & mobile </li>
+        <li>Systèmes & Réseaux</li>
+        <li>Intelligence Artificielle</li>
+        <li>Sécurité Informatique</li>
+        <li>Technicien d'informatiques</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="competences" class="skills-section section-animate">
+  <h2 class="section-title"><span>&lt;</span> Compétences <span>/&gt;</span></h2>
+
+  <div class="skills-bars">
+    <div class="left-skills">
+      <div class="skill">
+        <i class="fab fa-html5" style="color: orange;"></i> HTML/CSS/JavaScript <span>90%</span>
+        <div class="bar"><div style="width: 90%;"></div></div>
+      </div>
+      <div class="skill">
+        <i class="fab fa-java" style="color: #007396;"></i> Java/React.js, Next.js, NestJS, React Native <span>80%</span>
+        <div class="bar"><div style="width: 80%;"></div></div>
+      </div>
+      <div class="skill">
+        <i class="fab fa-linux" style="color: #fff;"></i> Linux/DevOps <span>50%</span>
+        <div class="bar"><div style="width: 50%;"></div></div>
+      </div>
+    </div>
+
+    <div class="right-skills">
+      <div class="skill">
+        <i class="fas fa-database" style="color: #2ecc71;"></i> SQL/Node.js <span>75%</span>
+        <div class="bar"><div style="width: 75%;"></div></div>
+      </div>
+      <div class="skill">
+        <i class="fab fa-python" style="color: #f7c936;"></i> Python/Django <span>85%</span>
+        <div class="bar"><div style="width: 85%;"></div></div>
+      </div>
+      <div class="skill">
+        <i class="fas fa-cloud" style="color: #00acee;"></i> Cloud Computing <span>70%</span>
+        <div class="bar"><div style="width: 70%;"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="skill-tags">
+    <div class="tag-group">
+      <h3>Frontend</h3>
+      <span><i class="fab fa-react"></i> React</span>
+      <span><i class="fab fa-html5"></i> HTML5</span>
+      <span><i class="fab fa-css3-alt"></i> CSS3</span>
+      <span><i class="fab fa-js-square"></i> JavaScript</span>
+      <span><i class="fab fa-bootstrap"></i> Bootstrap</span>
+      <span>Tailwind CSS</span>
+    </div>
+    <div class="tag-group">
+      <h3>Backend</h3>
+      <span><i class="fab fa-node-js"></i> Node.js</span>
+      <span>Express</span>
+      <span>Spring Boot</span>
+      <span><i class="fab fa-php"></i> PHP</span>
+      <span>MySQL</span>
+      <span>MongoDB</span>
+    </div>
+    <div class="tag-group">
+      <h3>DevOps & Outils</h3>
+      <span><i class="fab fa-git-alt"></i> Git</span>
+      <span><i class="fab fa-docker"></i> Docker</span>
+      <span>CI/CD</span>
+      <span><i class="fab fa-aws"></i> AWS</span>
+      <span><i class="fab fa-linux"></i> Linux</span>
+      <span>Bash</span>
+    </div>
+  </div>
+</section>
+
+<section id="projets" class="projects-section section-animate">
+  <h2 class="section-title"><span>&lt;</span> Projets <span>/&gt;</span></h2>
+
+  <div class="projects-grid">
+
+    <!-- Projet 1 -->
+    <div class="project-card">
+      <img src="2.jpg" alt="Responsive Web Design">
+      <div class="project-info">
+        <h3>Systeme intelligent des performances étudiantes</h3>
+        <p>Création de sites web adaptatifs en utilisant Flutter, Node.js, Espress.js et MongoDB.</p>
+        <div class="tags">
+          <span>Flutter</span><span>Node.js</span><span>Espress.js</span><span>MongoDB</span>
+        </div>
+        <button class="details-link" onclick="openModal('livraisonModal')">Voir les détails →</button>
+      </div>
+    </div>
+
+    <!-- Projet 2 -->
+<div class="project-card">
+  <img src="3.jpg" alt="Projet IoT">
+  <div class="project-info">
+    <h3>Classification des Panneaux de Signalisation (CNN)</h3>
+    <p>Implémentation d’un réseau de neurones convolutionnel pour reconnaître et classer les panneaux routiers.</p>
+    <div class="tags">
+       <span>Python</span><span>TensorFlow</span><span>Keras</span><span>OpenCV</span><span>CNN</span><span>HTML</span><span>CSS</span>
+    </div>
+    <button class="details-link" onclick="openModal('cnnModal')">Voir les détails →</button>
+  </div>
+</div>
+
+<!-- Projet 3 -->
+<div class="project-card">
+  <img src="4.webp" alt="Survival Game Unity">
+  <div class="project-info">
+    <h3>Jeu de Survie 3D (Unity)</h3>
+    <p>Développement d’un jeu de survie en 3D avec Unity et C#, incluant exploration, crafting et IA ennemie.</p>
+    <div class="tags">
+      <span>Unity</span><span>C#</span><span>Blender</span><span>Photoshop</span>
+    </div>
+    <button class="details-link" onclick="openModal('unityModal')">Voir les détails →</button>
+  </div>
+</div>
+
+<div class="project-card">
+  <img src="5.png" alt="Smart Home Tinkercad">
+  <div class="project-info">
+    <h3>Projet Smart Home avec Tinkercad</h3>
+    <p>Conception d'un système domotique intelligent avec simulation de capteurs et d'actuateurs.</p>
+    <div class="tags">
+      <span>Tinkercad</span><span>IoT</span><span>Arduino</span><span>Capteurs</span><span>C#</span>
+    </div>
+    <button class="details-link" onclick="openModal('tinkercadModal')">Voir les détails →</button>
+  </div>
+</div>
+
+<div class="project-card">
+  <img src="6.jpg" alt="Pâtisserie">
+  <div class="project-info">
+    <h3>Publicité pour une Pâtisserie</h3>
+    <p>Création d'une vidéo promotionnelle pour une pâtisserie en utilisant des techniques de montage vidéo professionnelles.</p>
+    <div class="tags">
+      <span>Adobe After Effects</span><span>Adobe Premiere Pro</span><span>Design graphique</span><span>Marketing digital</span>
+    </div>
+    <button class="details-link" onclick="openModal('patisserieModal')">Voir les détails →</button>
+  </div>
+</div>
+
+    
+
+    <div id="livraisonModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('livraisonModal')">&times;</span>
+    <h2>Plateforme de Livraison</h2>
+    <img src="2.jpg" alt="Livraison Projet">
+    <p>Application web et mobile pour le suivi intelligent des performances des étudiants.</p>
+    <p>Système complet permettant l'inscription des étudiants, le suivi de leurs notes, de leur assiduité, et de leur progression académique. L'application offre des tableaux de bord dynamiques pour les enseignants et les parents, des alertes personnalisées en cas de difficulté, ainsi qu'une génération automatique de rapports et de statistiques pour un accompagnement pédagogique optimal.</p>
+    <div class="tags">
+      <span>Flutter</span>
+      <span>node.js</span>
+      <span>Espress.js</span>
+      <span>MongoDB</span>
+    </div>
+    <button class="modal-close-btn" onclick="closeModal('livraisonModal')">Fermer</button>
+  </div>
+</div>
+
+<!-- Modal Projet CNN -->
+<div id="cnnModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('cnnModal')">&times;</span>
+    <h2>Classification des Panneaux de Signalisation Routière — CNN</h2>
+    <img src="3.jpg" alt="Projet CNN" style="max-width:100%; border-radius:10px; margin-bottom:15px;">
+    <p>Projet basé sur l’intelligence artificielle utilisant un réseau de neurones convolutionnel (CNN) pour identifier automatiquement les panneaux de signalisation routière.</p>
+    <p>
+      Le système a été entraîné sur un dataset de panneaux (ex. <strong>GTSRB</strong>) en utilisant TensorFlow/Keras.
+      Les étapes incluent le pré-traitement des images (redimensionnement, normalisation, augmentation de données) et la construction d’un modèle CNN avec plusieurs couches convolutionnelles, pooling, et fully-connected.
+    </p>
+    <p>
+      Les résultats montrent une précision élevée dans la classification des panneaux routiers, avec possibilité d’intégration dans des systèmes embarqués pour les véhicules intelligents.
+    </p>
+    <div class="tags">
+      <span>Python</span>
+      <span>TensorFlow</span>
+      <span>Keras</span>
+      <span>OpenCV</span>
+      <span>CNN</span>
+    </div>
+    <button class="modal-close-btn" onclick="closeModal('cnnModal')">Fermer</button>
+  </div>
+</div>
+
+<!-- Modal Projet Unity -->
+<div id="unityModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('unityModal')">&times;</span>
+    <h2>Jeu de Survie 3D — Unity</h2>
+    <img src="4.webp" alt="Unity Survival Game" style="max-width:100%; border-radius:10px; margin-bottom:15px;">
+    
+    <p>Développement d’un jeu de survie immersif avec Unity, où le joueur doit explorer, récolter des ressources et survivre dans un environnement hostile.</p>
+    <p>
+      Fonctionnalités :
+      <ul>
+        <li>🌍 Monde ouvert avec terrains réalistes</li>
+        <li>🥩 Système de survie (faim, soif, énergie)</li>
+        <li>🏗️ Crafting et construction</li>
+        <li>👾 IA ennemie avec comportements dynamiques</li>
+        <li>🎶 Effets visuels et sonores immersifs</li>
+      </ul>
+    </p>
+    <div class="tags">
+      <span>Unity</span>
+      <span>C#</span>
+      <span>Blender</span>
+      <span>Photoshop</span>
+    </div>
+    <button class="modal-close-btn" onclick="closeModal('unityModal')">Fermer</button>
+  </div>
+</div>
+
+<div id="tinkercadModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('tinkercadModal')">&times;</span>
+    <h2>Projet Smart Home avec Tinkercad</h2>
+    <img src="5.png" alt="Smart Home Tinkercad" style="max-width:100%; border-radius:10px; margin-bottom:15px;">
+    <p>Ce projet simule un système de maison intelligente à l'aide de l'environnement de simulation en ligne Tinkercad Circuits.</p>
+    <p>
+      Le système intègre divers composants :
+      <ul>
+        <li>💡 **Éclairage intelligent** : Un capteur de luminosité (photoresistor) ajuste automatiquement l'intensité d'une LED en fonction de la lumière ambiante.</li>
+        <li>🚨 **Système de sécurité** : Un capteur de mouvement (PIR) active une alarme sonore (buzzer) et une LED en cas de détection.</li>
+        <li>🌡️ **Thermostat connecté** : Un capteur de température (TMP36) contrôle un ventilateur (moteur DC) pour maintenir une température confortable.</li>
+      </ul>
+    </p>
+    <p>
+      Ce projet démontre mes compétences en **IoT**, en **électronique numérique** et en **programmation de microcontrôleurs** (Arduino). Il est idéal pour illustrer la conception et la simulation de systèmes embarqués.
+    </p>
+    <div class="tags">
+      <span>Tinkercad</span>
+      <span>IoT</span>
+      <span>Arduino</span>
+      <span>Capteurs</span>
+      <span>Électronique</span>
+    </div>
+    <button class="modal-close-btn" onclick="closeModal('tinkercadModal')">Fermer</button>
+  </div>
+</div>
+
+<div id="patisserieModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('patisserieModal')">&times;</span>
+    <h2>Publicité pour une Pâtisserie</h2>
+    <img src="6.jpg" alt="Pâtisserie Publicité" style="max-width:100%; border-radius:10px; margin-bottom:15px;">
+    <p>Ce projet consiste en la conception et la réalisation d’une vidéo promotionnelle pour une pâtisserie, visant à mettre en valeur la qualité des produits et l'ambiance chaleureuse du lieu. L’objectif était de créer un contenu visuellement attrayant pour les réseaux sociaux et le site web.</p>
+    <p>
+      Le processus a inclus plusieurs étapes :
+      <ul>
+        <li>✍️ **Conceptualisation** : Création d'un storyboard et d'un script pour définir le message et l'esthétique.</li>
+        <li>🎬 **Tournage et montage** : Utilisation d'**Adobe Premiere Pro** pour l'assemblage des séquences, l'ajout de transitions et la synchronisation audio.</li>
+        <li>✨ **Effets visuels** : Intégration d'animations et d'effets spéciaux avec **Adobe After Effects** pour dynamiser la vidéo (titres animés, logos, effets de particules).</li>
+        <li>🎨 **Design graphique** : Conception d'éléments visuels personnalisés comme le logo et les bannières.</li>
+      </ul>
+    </p>
+    <p>Ce projet démontre mes compétences en **montage vidéo**, en **motion design**, et ma capacité à produire du contenu marketing de haute qualité.</p>
+    <div class="tags">
+      <span>Adobe Premiere Pro</span>
+      <span>Adobe After Effects</span>
+      <span>Design graphique</span>
+      <span>Storyboarding</span>
+      <span>Marketing digital</span>
+    </div>
+    <button class="modal-close-btn" onclick="closeModal('patisserieModal')">Fermer</button>
+  </div>
+</div>
+
+<div class="project-card">
+  <img src="7.jpg" alt="Titanic">
+  <div class="project-info">
+    <h3>Prévision des survivants du Titanic</h3>
+    <p>Utilisation d'algorithmes de Machine Learning pour prédire la survie des passagers du Titanic.</p>
+    <div class="tags">
+      <span>Python</span><span>Scikit-learn</span><span>Pandas</span><span>NumPy</span><span>Matplotlib</span>
+    </div>
+    <button class="details-link" onclick="openModal('titanicModal')">Voir les détails →</button>
+  </div>
+</div>
+
+<div id="titanicModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('titanicModal')">&times;</span>
+    <h2>Prévision des survivants du Titanic</h2>
+    <img src="7.jpg" alt="Projet Titanic" style="max-width:100%; border-radius:10px; margin-bottom:15px;">
+    <p>Ce projet de science des données se concentre sur l'analyse de l'ensemble de données des passagers du Titanic et la construction d'un modèle de prédiction pour déterminer quels facteurs ont le plus influencé la survie.</p>
+    <p>
+      Le processus a inclus plusieurs étapes clés :
+      <ul>
+        <li>📊 **Analyse exploratoire des données (EDA)** : Nettoyage et préparation des données, gestion des valeurs manquantes, et exploration des corrélations entre les variables (sexe, âge, classe de passager) et le taux de survie.</li>
+        <li>🧠 **Sélection du modèle** : Entraînement de plusieurs algorithmes de classification comme la **régression logistique**, les **forêts aléatoires**, et les **machines à vecteurs de support (SVM)** pour trouver le meilleur modèle.</li>
+        <li>📈 **Évaluation de la performance** : Utilisation de métriques telles que la précision et le score F1 pour évaluer l'efficacité du modèle.</li>
+      </ul>
+    </p>
+    <p>Ce projet démontre mes compétences en **traitement des données**, en **modélisation prédictive**, et en **déploiement de solutions de Machine Learning**.</p>
+    <div class="tags">
+      <span>Python</span>
+      <span>Scikit-learn</span>
+      <span>Pandas</span>
+      <span>NumPy</span>
+      <span>Matplotlib</span>
+      <span>Jupyter Notebook</span>
+    </div>
+    <button class="modal-close-btn" onclick="closeModal('titanicModal')">Fermer</button>
+  </div>
+</div>
+
+</section>
+
+<section id="statistiques" class="stats-section section-animate">
+  <h2 class="section-title"><span>&lt;</span> Statistiques <span>/&gt;</span></h2>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <i class="fas fa-project-diagram"></i>
+      <h3>5</h3>
+      <p>Projets Terminés</p>
+    </div>
+    <div class="stat-card">
+      <i class="fas fa-calendar-alt"></i>
+      <h3>4</h3>
+      <p>Années d'Expérience</p>
+    </div>
+    <div class="stat-card">
+      <i class="fas fa-code"></i>
+      <h3>10</h3>
+      <p>Technologies Maîtrisées</p>
+    </div>
+    <div class="stat-card">
+      <i class="fas fa-smile"></i>
+      <h3>5</h3>
+      <p>Clients Satisfaits</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact-section section-animate">
+  <h2 class="section-title"><span>&lt;</span> Contact <span>/&gt;</span></h2>
+  <div class="contact-container">
+    <div class="contact-left">
+      <h3>Prenons contact</h3>
+      <p>Vous avez un projet ou une idée ? N’hésitez pas à me contacter !</p>
+      <p><i class="fas fa-envelope"></i> nawaliyoussef62@gmail.com</p>
+      <p><i class="fas fa-phone"></i> +216 51079539</p>
+      <a href="https://www.linkedin.com/in/youssef-nawali-a76386346/" target="_blank" title="Mon LinkedIn">
+    <i class="fab fa-linkedin"></i>
+  </a>
+    </div>
+    <form class="contact-form">
+      <label for="name">Nom</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <button type="submit">Envoyer</button>
+    </form>
+  </div>
+</section>
+
+<a href="#accueil" class="scroll-top" title="Retour en haut">
+  <i class="fas fa-arrow-up"></i>
+</a>
+
+
+<footer class="footer">
+  <p>&copy; 2025 Youssef Nawali. Tous droits réservés.</p>
+  <div class="footer-links">
+    <a href="#accueil">Accueil</a>
+    <a href="#projets">Projets</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+
+</body>
+
+<script>
+  const themeSwitch = document.getElementById('theme-switch');
+
+  themeSwitch.addEventListener('change', () => {
+    document.body.classList.toggle('light-mode');
+    localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+  });
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      document.body.classList.add('light-mode');
+      themeSwitch.checked = true;
+    }
+  });
+</script>
+
+<script>
+  function toggleMenu() {
+    const navLinks = document.querySelector('nav ul');
+    navLinks.classList.toggle('active');
+  }
+</script>
+
+<script>
+  function toggleMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.toggle('active');
+  }
+
+  // Fermer le menu après clic sur un lien (mobile uniquement)
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      const navLinks = document.querySelector('.nav-links');
+      if (window.innerWidth <= 768 && navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+      }
+    });
+  });
+</script>
+
+<script>
+  window.addEventListener("load", function () {
+    const loader = document.getElementById("loader");
+    loader.style.opacity = "0";
+    setTimeout(() => loader.style.display = "none", 600);
+  });
+</script>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  });
+
+  document.querySelectorAll('.section-animate').forEach(section => {
+    observer.observe(section);
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const text = "Bonjour, je suis Youssef";
+    const el = document.querySelector(".typewriter-text");
+    el.textContent = text;
+  });
+</script>
+
+<script>
+  function openModal(id) {
+    document.getElementById(id).style.display = 'block';
+  }
+
+  function closeModal(id) {
+    document.getElementById(id).style.display = 'none';
+  }
+
+  // Fermer en cliquant en dehors
+  window.addEventListener('click', function(event) {
+    document.querySelectorAll('.modal').forEach(modal => {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  });
+</script>
+
+
+</html>
