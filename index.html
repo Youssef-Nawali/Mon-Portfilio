@@ -1,571 +1,1420 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Youssef Nawali</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-  html {
-    scroll-behavior: smooth;
-  }
-</style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <meta charset="UTF-8">
-  <title>Portfolio Youssef</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        :root {
+            --primary: #00f2fe;
+            --secondary: #4facfe;
+            --accent: #f093fb;
+            --dark: #0a0e27;
+            --darker: #050714;
+            --light: #ffffff;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-50px) translateX(30px); }
+            50% { transform: translateY(-100px) translateX(-30px); }
+            75% { transform: translateY(-50px) translateX(30px); }
+        }
+
+        .gradient-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(79, 172, 254, 0.1) 0%,
+                rgba(0, 242, 254, 0.1) 50%,
+                rgba(240, 147, 251, 0.1) 100%);
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .grid-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 242, 254, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 242, 254, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Loader */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--darker);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.6s;
+        }
+
+        .loader-title {
+            font-size: 3rem;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
+        }
+
+        /* Header & Navigation */
+        header {
+            position: relative;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 242, 254, 0.1);
+        }
+
+        .navbar h1 {
+            font-size: 1.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 1.5rem;
+            right: 5%;
+            z-index: 1001;
+        }
+
+        .theme-toggle input {
+            display: none;
+        }
+
+        .theme-toggle label {
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--primary);
+            transition: transform 0.3s;
+        }
+
+        .theme-toggle label:hover {
+            transform: rotate(20deg) scale(1.1);
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8rem 5% 4rem;
+            gap: 3rem;
+        }
+
+        .hero-content {
+            flex: 1;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .hero-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .name {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 2rem;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn.primary {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: var(--dark);
+        }
+
+        .btn.primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--secondary), var(--accent));
+            transition: left 0.3s;
+        }
+
+        .btn.primary:hover::before {
+            left: 0;
+        }
+
+        .btn span, .btn i {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn.light {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn.light:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.3);
+        }
+
+        .socials {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .socials a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(0, 242, 254, 0.1);
+            border: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .socials a:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateY(-5px) rotate(360deg);
+            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.3);
+        }
+
+        .hero-image {
+            flex: 1;
+            position: relative;
+            animation: slideInRight 1s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 20px;
+            border: 3px solid var(--primary);
+            box-shadow: 0 20px 60px rgba(0, 242, 254, 0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .scroll-down a {
+            color: var(--primary);
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 5%;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title span {
+            color: var(--primary);
+        }
+
+        .section-animate {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s;
+        }
+
+        .section-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* About Section */
+        .about-container {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            flex: 1;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            border: 3px solid var(--primary);
+            box-shadow: 0 20px 60px rgba(0, 242, 254, 0.3);
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-content p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .skills-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skills-list li {
+            padding: 0.5rem 1rem;
+            background: rgba(0, 242, 254, 0.1);
+            border-left: 3px solid var(--primary);
+            border-radius: 5px;
+        }
+
+        /* Skills Section */
+        .skills-bars {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .skill {
+            margin-bottom: 1.5rem;
+        }
+
+        .skill i {
+            margin-right: 0.5rem;
+        }
+
+        .bar {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .bar div {
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            border-radius: 10px;
+            animation: fillBar 2s ease-out;
+        }
+
+        @keyframes fillBar {
+            from { width: 0; }
+        }
+
+        .skill-tags {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .tag-group h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .tag-group span {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 242, 254, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 20px;
+            margin: 0.3rem;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .tag-group span:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 242, 254, 0.3);
+            border-color: var(--primary);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-info h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .project-info p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tags span {
+            padding: 0.3rem 0.8rem;
+            background: rgba(0, 242, 254, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+
+        .details-link {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .details-link:hover {
+            background: var(--primary);
+            color: var(--dark);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: var(--dark);
+            margin: 5% auto;
+            padding: 2rem;
+            max-width: 800px;
+            border-radius: 20px;
+            border: 2px solid var(--primary);
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        .modal-content h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .modal-content img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .modal-content p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .modal-content ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-close-btn {
+            background: var(--primary);
+            color: var(--dark);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 242, 254, 0.05);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 242, 254, 0.3);
+        }
+
+        .stat-card i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .stat-card h3 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-left h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .contact-left p {
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-left i {
+            color: var(--primary);
+            margin-right: 0.5rem;
+        }
+
+        .contact-left a {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-top: 1rem;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .contact-left a:hover {
+            transform: scale(1.2);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-form label {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(0, 242, 254, 0.3);
+            border-radius: 10px;
+            color: var(--light);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+        }
+
+        .contact-form button {
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            border: none;
+            border-radius: 25px;
+            color: var(--dark);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .contact-form button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.3);
+        }
+
+        /* Scroll to Top */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.5);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 2rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(0, 242, 254, 0.2);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Light Mode */
+        body.light-mode {
+            --dark: #f5f5f5;
+            --darker: #ffffff;
+            --light: #0a0e27;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 250px;
+                flex-direction: column;
+                background: rgba(10, 14, 39, 0.95);
+                padding: 2rem;
+                border-radius: 10px;
+                transition: right 0.3s;
+            }
+
+            .nav-links.active {
+                right: 5%;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .about-container {
+                flex-direction: column;
+            }
+
+            .skills-bars {
+                grid-template-columns: 1fr;
+            }
+
+            .skill-tags {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-bg"></div>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <!-- Loader -->
     <div id="loader">
-  <h1 class="loader-title">Youssef Nawali</h1>
-</div>
+        <h1 class="loader-title">Youssef Nawali</h1>
+    </div>
 
-
-  <header class="header">
+    <!-- Theme Toggle -->
     <div class="theme-toggle">
-  <input type="checkbox" id="theme-switch">
-  <label for="theme-switch"><i class="fas fa-moon"></i></label>
-</div>
+        <input type="checkbox" id="theme-switch">
+        <label for="theme-switch"><i class="fas fa-moon"></i></label>
+    </div>
 
-    <nav class="navbar">
-        
-  <h1>&lt;<span class="highlight">Youssef Nawali</span>/&gt;</h1>
-  <div class="menu-toggle" onclick="toggleMenu()">
-    <i class="fas fa-bars"></i>
-  </div>
-  <ul class="nav-links">
-    <li><a href="#accueil">Accueil</a></li>
-    <li><a href="#apropos">À propos</a></li>
-    <li><a href="#competences">Compétences</a></li>
-    <li><a href="#projets">Projets</a></li>
-    <li><a href="#statistiques">Statistiques</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <h1>&lt;<span class="highlight">Youssef Nawali</span>/&gt;</h1>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#apropos">À propos</a></li>
+                <li><a href="#competences">Compétences</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#statistiques">Statistiques</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
 
-    <section id="accueil" class="hero">
+        <!-- Hero Section -->
+        <section id="accueil" class="hero">
+            <div class="hero-content">
+                <h2>Bonjour, je suis <span class="name">Youssef</span></h2>
+                <p class="subtitle">Technicien supérieur en ingénierie des systèmes informatiques, spécialisé en IoT et systèmes embarqués & Développeur</p>
+                <p class="description">Je transforme les idées en solutions innovantes.</p>
+                <div class="buttons">
+                    <a href="cv.pdf" class="btn primary"><i class="fas fa-file-alt"></i> CV</a>
+                    
+                </div>
+                <div class="socials">
+                    <a href="https://www.linkedin.com/in/youssef-nawali-a76386346/" target="_blank" title="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/Youssef-Nawali" target="_blank" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="1.jpg" alt="Youssef Nawali">
+            </div>
+        </section>
 
-      <div class="hero-content">
-        <h2 class="typewriter-text"> Bonjour, je suis <span class="name">Youssef</span> <span class="tag"></h2>
-        <p class="subtitle">Technicien superieur en ingénierie des systèmes informatiques, spécialisée en IoT et systèmes embarqués & Développeur</p>
-        <p class="description">Je transforme les idées en solutions.</p>
-        <div class="buttons">
-          <a href="Youssef Nawali CV.pdf" target="_blank" class="btn primary"><i class="fas fa-file-alt"></i> CV</a>
-          <a href="Lettre_Motivation_Youssef_Nawali.pdf" target="_blank" class="btn light">
-  <i class="fas fa-file-signature"></i> Lettre de Motivation
-</a>
-
+        <div class="scroll-down">
+            <a href="#apropos"><i class="fas fa-angle-down"></i></a>
         </div>
-        <div class="socials">
-  <a href="https://www.linkedin.com/in/youssef-nawali-a76386346/" target="_blank" title="Mon LinkedIn">
-    <i class="fab fa-linkedin"></i>
-  </a>
-  <a href="https://github.com/Youssef-Nawali" target="_blank" title="Mon GitHub">
-    <i class="fab fa-github"></i>
-  </a>
-</div>
+    </header>
 
-      </div>
-      <div class="hero-image">
-        <img src="1.jpg" alt="Youssef Nawali">
-      </div>
+    <!-- About Section -->
+    <section id="apropos" class="about section-animate">
+        <h2 class="section-title"><span>&lt;</span> À Propos <span>/&gt;</span></h2>
+        <div class="about-container">
+            <div class="about-image">
+                <img src="1.jpg" alt="Youssef Nawali">
+            </div>
+            <div class="about-content">
+                <h3>Je suis <span class="name">Youssef Nawali</span></h3>
+                <p>Passionné par les systèmes informatiques et la technologie, je suis un Technicien supérieur en ingénierie des systèmes informatiques, spécialisé en IoT et systèmes embarqués toujours prêt à relever de nouveaux défis.</p>
+                <p>Ma vision est de créer des solutions technologiques innovantes qui répondent aux besoins du monde moderne tout en étant accessibles et intuitives pour les utilisateurs.</p>
+                <ul class="skills-list">
+                    <li>Développement Web & Mobile</li>
+                    <li>Systèmes & Réseaux</li>
+                    <li>Intelligence Artificielle</li>
+                    <li>Sécurité Informatique</li>
+                    <li>Technicien Informatique</li>
+                    <li>IoT & Systèmes Embarqués</li>
+                </ul>
+            </div>
+        </div>
     </section>
-    <div class="scroll-down">
-  <a href="#apropos"><i class="fas fa-angle-down"></i></a>
-  
-</div>
 
-  </header>
+    <!-- Skills Section -->
+    <section id="competences" class="skills-section section-animate">
+        <h2 class="section-title"><span>&lt;</span> Compétences <span>/&gt;</span></h2>
 
-  <section id="apropos" class="about section-animate">
-  <h2 class="section-title"><span>&lt;</span> À Propos <span>/&gt;</span></h2>
-  <div class="about-container">
-    <div class="about-image">
-      <img src="1.jpg" alt="Youssef Nawali">
-    </div>
-    <div class="about-content">
-      <h3>Je suis <span class="name">Youssef Nawali</span></h3>
-      <p>
-        Passionné par les systèmes informatiques et la technologie, je suis un Technicien superieur en en ingénierie des systèmes informatiques, spécialisée en IoT et systèmes embarqués toujours prêt à relever de nouveaux défis. 
-        Depuis le début de mon parcours académique, j’ai cultivé une grande curiosité pour les domaines liés aux systèmes, aux réseaux, et au développement d’applications.
-      </p>
-      <p>
-        Ma vision est de créer des solutions technologiques innovantes qui répondent aux besoins du monde moderne tout en étant accessibles et intuitives pour les utilisateurs.
-      </p>
-      <ul class="skills-list">
-        <li>Développement Web & mobile </li>
-        <li>Systèmes & Réseaux</li>
-        <li>Intelligence Artificielle</li>
-        <li>Sécurité Informatique</li>
-        <li>Technicien d'informatiques</li>
-      </ul>
-    </div>
-  </div>
-</section>
+        <div class="skills-bars">
+            <div class="left-skills">
+                <div class="skill">
+                    <i class="fab fa-html5" style="color: orange;"></i> HTML/CSS/JavaScript <span>90%</span>
+                    <div class="bar"><div style="width: 90%;"></div></div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-java" style="color: #007396;"></i> Java/React/Next.js <span>80%</span>
+                    <div class="bar"><div style="width: 80%;"></div></div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-linux" style="color: #fff;"></i> Linux/DevOps <span>50%</span>
+                    <div class="bar"><div style="width: 50%;"></div></div>
+                </div>
+            </div>
 
-<section id="competences" class="skills-section section-animate">
-  <h2 class="section-title"><span>&lt;</span> Compétences <span>/&gt;</span></h2>
-
-  <div class="skills-bars">
-    <div class="left-skills">
-      <div class="skill">
-        <i class="fab fa-html5" style="color: orange;"></i> HTML/CSS/JavaScript <span>90%</span>
-        <div class="bar"><div style="width: 90%;"></div></div>
-      </div>
-      <div class="skill">
-        <i class="fab fa-java" style="color: #007396;"></i> Java/React.js, Next.js, NestJS, React Native <span>80%</span>
-        <div class="bar"><div style="width: 80%;"></div></div>
-      </div>
-      <div class="skill">
-        <i class="fab fa-linux" style="color: #fff;"></i> Linux/DevOps <span>50%</span>
-        <div class="bar"><div style="width: 50%;"></div></div>
-      </div>
-    </div>
-
-    <div class="right-skills">
-      <div class="skill">
-        <i class="fas fa-database" style="color: #2ecc71;"></i> SQL/Node.js <span>75%</span>
-        <div class="bar"><div style="width: 75%;"></div></div>
-      </div>
-      <div class="skill">
-        <i class="fab fa-python" style="color: #f7c936;"></i> Python/Django <span>85%</span>
-        <div class="bar"><div style="width: 85%;"></div></div>
-      </div>
-      <div class="skill">
-        <i class="fas fa-cloud" style="color: #00acee;"></i> Cloud Computing <span>70%</span>
-        <div class="bar"><div style="width: 70%;"></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="skill-tags">
-    <div class="tag-group">
-      <h3>Frontend</h3>
-      <span><i class="fab fa-react"></i> React</span>
-      <span><i class="fab fa-html5"></i> HTML5</span>
-      <span><i class="fab fa-css3-alt"></i> CSS3</span>
-      <span><i class="fab fa-js-square"></i> JavaScript</span>
-      <span><i class="fab fa-bootstrap"></i> Bootstrap</span>
-      <span>Tailwind CSS</span>
-    </div>
-    <div class="tag-group">
-      <h3>Backend</h3>
-      <span><i class="fab fa-node-js"></i> Node.js</span>
-      <span>Express</span>
-      <span>Spring Boot</span>
-      <span><i class="fab fa-php"></i> PHP</span>
-      <span>MySQL</span>
-      <span>MongoDB</span>
-    </div>
-    <div class="tag-group">
-      <h3>DevOps & Outils</h3>
-      <span><i class="fab fa-git-alt"></i> Git</span>
-      <span><i class="fab fa-docker"></i> Docker</span>
-      <span>CI/CD</span>
-      <span><i class="fab fa-aws"></i> AWS</span>
-      <span><i class="fab fa-linux"></i> Linux</span>
-      <span>Bash</span>
-    </div>
-  </div>
-</section>
-
-<section id="projets" class="projects-section section-animate">
-  <h2 class="section-title"><span>&lt;</span> Projets <span>/&gt;</span></h2>
-
-  <div class="projects-grid">
-
-    <!-- Projet 1 -->
-    <div class="project-card">
-      <img src="2.jpg" alt="Responsive Web Design">
-      <div class="project-info">
-        <h3>Systeme intelligent des performances étudiantes</h3>
-        <p>Création de sites web adaptatifs en utilisant Flutter, Node.js, Espress.js et MongoDB.</p>
-        <div class="tags">
-          <span>Flutter</span><span>Node.js</span><span>Espress.js</span><span>MongoDB</span>
+            <div class="right-skills">
+                <div class="skill">
+                    <i class="fas fa-database" style="color: #2ecc71;"></i> SQL/Node.js <span>75%</span>
+                    <div class="bar"><div style="width: 75%;"></div></div>
+                </div>
+                <div class="skill">
+                    <i class="fab fa-python" style="color: #f7c936;"></i> Python/Django <span>85%</span>
+                    <div class="bar"><div style="width: 85%;"></div></div>
+                </div>
+                <div class="skill">
+                    <i class="fas fa-cloud" style="color: #00acee;"></i> Cloud Computing <span>70%</span>
+                    <div class="bar"><div style="width: 70%;"></div></div>
+                </div>
+            </div>
         </div>
-        <button class="details-link" onclick="openModal('livraisonModal')">Voir les détails →</button>
-      </div>
-    </div>
 
-    <!-- Projet 2 -->
-<div class="project-card">
-  <img src="3.jpg" alt="Projet IoT">
-  <div class="project-info">
-    <h3>Classification des Panneaux de Signalisation (CNN)</h3>
-    <p>Implémentation d’un réseau de neurones convolutionnel pour reconnaître et classer les panneaux routiers.</p>
-    <div class="tags">
-       <span>Python</span><span>TensorFlow</span><span>Keras</span><span>OpenCV</span><span>CNN</span><span>HTML</span><span>CSS</span>
-    </div>
-    <button class="details-link" onclick="openModal('cnnModal')">Voir les détails →</button>
-  </div>
-</div>
+        <div class="skill-tags">
+            <div class="tag-group">
+                <h3>Frontend</h3>
+                <span><i class="fab fa-react"></i> React</span>
+                <span><i class="fab fa-html5"></i> HTML5</span>
+                <span><i class="fab fa-css3-alt"></i> CSS3</span>
+                <span><i class="fab fa-js-square"></i> JavaScript</span>
+                <span><i class="fab fa-bootstrap"></i> Bootstrap</span>
+                <span>Tailwind CSS</span>
+            </div>
+            <div class="tag-group">
+                <h3>Backend</h3>
+                <span><i class="fab fa-node-js"></i> Node.js</span>
+                <span>Express</span>
+                <span>Spring Boot</span>
+                <span><i class="fab fa-php"></i> PHP</span>
+                <span>MySQL</span>
+                <span>MongoDB</span>
+            </div>
+            <div class="tag-group">
+                <h3>DevOps & Outils</h3>
+                <span><i class="fab fa-git-alt"></i> Git</span>
+                <span><i class="fab fa-docker"></i> Docker</span>
+                <span>CI/CD</span>
+                <span><i class="fab fa-aws"></i> AWS</span>
+                <span><i class="fab fa-linux"></i> Linux</span>
+                <span>Bash</span>
+            </div>
+        </div>
+    </section>
 
-<!-- Projet 3 -->
-<div class="project-card">
-  <img src="4.webp" alt="Survival Game Unity">
-  <div class="project-info">
-    <h3>Jeu de Survie 3D (Unity)</h3>
-    <p>Développement d’un jeu de survie en 3D avec Unity et C#, incluant exploration, crafting et IA ennemie.</p>
-    <div class="tags">
-      <span>Unity</span><span>C#</span><span>Blender</span><span>Photoshop</span>
-    </div>
-    <button class="details-link" onclick="openModal('unityModal')">Voir les détails →</button>
-  </div>
-</div>
+    <!-- Projects Section -->
+    <section id="projets" class="projects-section section-animate">
+        <h2 class="section-title"><span>&lt;</span> Projets <span>/&gt;</span></h2>
 
-<div class="project-card">
-  <img src="5.png" alt="Smart Home Tinkercad">
-  <div class="project-info">
-    <h3>Projet Smart Home avec Tinkercad</h3>
-    <p>Conception d'un système domotique intelligent avec simulation de capteurs et d'actuateurs.</p>
-    <div class="tags">
-      <span>Tinkercad</span><span>IoT</span><span>Arduino</span><span>Capteurs</span><span>C#</span>
-    </div>
-    <button class="details-link" onclick="openModal('tinkercadModal')">Voir les détails →</button>
-  </div>
-</div>
+        <div class="projects-grid">
+            <!-- Projet 1 -->
+            <div class="project-card">
+                <img src="2.jpg" alt="Système étudiant">
+                <div class="project-info">
+                    <h3>Système intelligent des performances étudiantes</h3>
+                    <p>Application web et mobile pour le suivi intelligent des performances des étudiants.</p>
+                    <div class="tags">
+                        <span>Flutter</span><span>Node.js</span><span>Express.js</span><span>MongoDB</span>
+                    </div>
+                    <button class="details-link" onclick="openModal('livraisonModal')">Voir les détails →</button>
+                </div>
+            </div>
 
-<div class="project-card">
-  <img src="6.jpg" alt="Pâtisserie">
-  <div class="project-info">
-    <h3>Publicité pour une Pâtisserie</h3>
-    <p>Création d'une vidéo promotionnelle pour une pâtisserie en utilisant des techniques de montage vidéo professionnelles.</p>
-    <div class="tags">
-      <span>Adobe After Effects</span><span>Adobe Premiere Pro</span><span>Design graphique</span><span>Marketing digital</span>
-    </div>
-    <button class="details-link" onclick="openModal('patisserieModal')">Voir les détails →</button>
-  </div>
-</div>
+            <!-- Projet 2 -->
+            <div class="project-card">
+                <img src="3.jpg" alt="CNN Project">
+                <div class="project-info">
+                    <h3>Classification des Panneaux de Signalisation (CNN)</h3>
+                    <p>Implémentation d'un réseau de neurones convolutionnel pour reconnaître et classer les panneaux routiers.</p>
+                    <div class="tags">
+                        <span>Python</span><span>TensorFlow</span><span>Keras</span><span>OpenCV</span><span>CNN</span>
+                    </div>
+                    <button class="details-link" onclick="openModal('cnnModal')">Voir les détails →</button>
+                </div>
+            </div>
 
-    
+            <!-- Projet 3 -->
+            <div class="project-card">
+                <img src="4.webp" alt="Unity Game">
+                <div class="project-info">
+                    <h3>Jeu de Survie 3D (Unity)</h3>
+                    <p>Développement d'un jeu de survie en 3D avec Unity et C#, incluant exploration, crafting et IA ennemie.</p>
+                    <div class="tags">
+                        <span>Unity</span><span>C#</span><span>Blender</span><span>Photoshop</span>
+                    </div>
+                    <button class="details-link" onclick="openModal('unityModal')">Voir les détails →</button>
+                </div>
+            </div>
 
+            <!-- Projet 4 -->
+            <div class="project-card">
+                <img src="5.png" alt="Smart Home">
+                <div class="project-info">
+                    <h3>Projet Smart Home avec Tinkercad</h3>
+                    <p>Conception d'un système domotique intelligent avec simulation de capteurs et d'actuateurs.</p>
+                    <div class="tags">
+                        <span>Tinkercad</span><span>IoT</span><span>Arduino</span><span>Capteurs</span>
+                    </div>
+                    <button class="details-link" onclick="openModal('tinkercadModal')">Voir les détails →</button>
+                </div>
+            </div>
+
+            <!-- Projet 5 -->
+            <div class="project-card">
+                <img src="6.jpg" alt="Pâtisserie">
+                <div class="project-info">
+                    <h3>Publicité pour une Pâtisserie</h3>
+                    <p>Création d'une vidéo promotionnelle pour une pâtisserie en utilisant des techniques de montage vidéo professionnelles.</p>
+                    <div class="tags">
+                        <span>After Effects</span><span>Premiere Pro</span><span>Design graphique</span>
+                    </div>
+                    <button class="details-link" onclick="openModal('patisserieModal')">Voir les détails →</button>
+                </div>
+            </div>
+
+            <!-- Projet 6 -->
+            <div class="project-card">
+                <img src="7.jpg" alt="Titanic">
+                <div class="project-info">
+                    <h3>Prévision des survivants du Titanic</h3>
+                    <p>Utilisation d'algorithmes de Machine Learning pour prédire la survie des passagers du Titanic.</p>
+                    <div class="tags">
+                        <span>Python</span><span>Scikit-learn</span><span>Pandas</span><span>NumPy</span>
+                    </div>
+                    <button class="details-link" onclick="openModal('titanicModal')">Voir les détails →</button>
+                </div>
+            </div>
+
+            <!-- Projet 7 -->
+            <div class="project-card">
+                <img src="9.png" alt="Gaming Website">
+                <div class="project-info">
+                    <h3>Site Web Gaming & Programs</h3>
+                    <p>Plateforme web moderne dédiée aux jeux vidéo et programmes, avec design immersif et fonctionnalités interactives.</p>
+                    <div class="tags">
+                        <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>React</span><span>Node.js</span>
+                    </div>
+                    <button class="details-link" onclick="openModal('gamingModal')">Voir les détails →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modals -->
     <div id="livraisonModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('livraisonModal')">&times;</span>
-    <h2>Plateforme de Livraison</h2>
-    <img src="2.jpg" alt="Livraison Projet">
-    <p>Application web et mobile pour le suivi intelligent des performances des étudiants.</p>
-    <p>Système complet permettant l'inscription des étudiants, le suivi de leurs notes, de leur assiduité, et de leur progression académique. L'application offre des tableaux de bord dynamiques pour les enseignants et les parents, des alertes personnalisées en cas de difficulté, ainsi qu'une génération automatique de rapports et de statistiques pour un accompagnement pédagogique optimal.</p>
-    <div class="tags">
-      <span>Flutter</span>
-      <span>node.js</span>
-      <span>Espress.js</span>
-      <span>MongoDB</span>
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('livraisonModal')">&times;</span>
+            <h2>Système intelligent des performances étudiantes</h2>
+            <img src="2.jpg" alt="Projet">
+            <p>Application web et mobile pour le suivi intelligent des performances des étudiants.</p>
+            <p>Système complet permettant l'inscription des étudiants, le suivi de leurs notes, de leur assiduité, et de leur progression académique. L'application offre des tableaux de bord dynamiques pour les enseignants et les parents, des alertes personnalisées en cas de difficulté, ainsi qu'une génération automatique de rapports et de statistiques pour un accompagnement pédagogique optimal.</p>
+            <div class="tags">
+                <span>Flutter</span><span>Node.js</span><span>Express.js</span><span>MongoDB</span>
+            </div>
+            <button class="modal-close-btn" onclick="closeModal('livraisonModal')">Fermer</button>
+        </div>
     </div>
-    <button class="modal-close-btn" onclick="closeModal('livraisonModal')">Fermer</button>
-  </div>
-</div>
 
-<!-- Modal Projet CNN -->
-<div id="cnnModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('cnnModal')">&times;</span>
-    <h2>Classification des Panneaux de Signalisation Routière — CNN</h2>
-    <img src="3.jpg" alt="Projet CNN" style="max-width:100%; border-radius:10px; margin-bottom:15px;">
-    <p>Projet basé sur l’intelligence artificielle utilisant un réseau de neurones convolutionnel (CNN) pour identifier automatiquement les panneaux de signalisation routière.</p>
-    <p>
-      Le système a été entraîné sur un dataset de panneaux (ex. <strong>GTSRB</strong>) en utilisant TensorFlow/Keras.
-      Les étapes incluent le pré-traitement des images (redimensionnement, normalisation, augmentation de données) et la construction d’un modèle CNN avec plusieurs couches convolutionnelles, pooling, et fully-connected.
-    </p>
-    <p>
-      Les résultats montrent une précision élevée dans la classification des panneaux routiers, avec possibilité d’intégration dans des systèmes embarqués pour les véhicules intelligents.
-    </p>
-    <div class="tags">
-      <span>Python</span>
-      <span>TensorFlow</span>
-      <span>Keras</span>
-      <span>OpenCV</span>
-      <span>CNN</span>
+    <div id="cnnModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('cnnModal')">&times;</span>
+            <h2>Classification des Panneaux de Signalisation — CNN</h2>
+            <img src="3.jpg" alt="Projet CNN">
+            <p>Projet basé sur l'intelligence artificielle utilisant un réseau de neurones convolutionnel (CNN) pour identifier automatiquement les panneaux de signalisation routière.</p>
+            <p>Le système a été entraîné sur un dataset de panneaux (ex. GTSRB) en utilisant TensorFlow/Keras. Les étapes incluent le pré-traitement des images et la construction d'un modèle CNN avec plusieurs couches convolutionnelles.</p>
+            <p>Les résultats montrent une précision élevée dans la classification des panneaux routiers, avec possibilité d'intégration dans des systèmes embarqués pour les véhicules intelligents.</p>
+            <div class="tags">
+                <span>Python</span><span>TensorFlow</span><span>Keras</span><span>OpenCV</span><span>CNN</span>
+            </div>
+            <button class="modal-close-btn" onclick="closeModal('cnnModal')">Fermer</button>
+        </div>
     </div>
-    <button class="modal-close-btn" onclick="closeModal('cnnModal')">Fermer</button>
-  </div>
-</div>
 
-<!-- Modal Projet Unity -->
-<div id="unityModal" class="modal">
+    <div id="unityModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('unityModal')">&times;</span>
+            <h2>Jeu de Survie 3D — Unity</h2>
+            <img src="4.webp" alt="Unity Game">
+            <p>Développement d'un jeu de survie immersif avec Unity, où le joueur doit explorer, récolter des ressources et survivre dans un environnement hostile.</p>
+            <ul>
+                <li>🌍 Monde ouvert avec terrains réalistes</li>
+                <li>🥩 Système de survie (faim, soif, énergie)</li>
+                <li>🏗️ Crafting et construction</li>
+                <li>👾 IA ennemie avec comportements dynamiques</li>
+                <li>🎶 Effets visuels et sonores immersifs</li>
+            </ul>
+            <div class="tags">
+                <span>Unity</span><span>C#</span><span>Blender</span><span>Photoshop</span>
+            </div>
+            <button class="modal-close-btn" onclick="closeModal('unityModal')">Fermer</button>
+        </div>
+    </div>
+
+    <div id="tinkercadModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('tinkercadModal')">&times;</span>
+            <h2>Projet Smart Home avec Tinkercad</h2>
+            <img src="5.png" alt="Smart Home">
+            <p>Ce projet simule un système de maison intelligente à l'aide de Tinkercad Circuits.</p>
+            <ul>
+                <li>💡 Éclairage intelligent avec capteur de luminosité</li>
+                <li>🚨 Système de sécurité avec capteur de mouvement PIR</li>
+                <li>🌡️ Thermostat connecté avec contrôle de température</li>
+            </ul>
+            <p>Ce projet démontre mes compétences en IoT, en électronique numérique et en programmation de microcontrôleurs (Arduino).</p>
+            <div class="tags">
+                <span>Tinkercad</span><span>IoT</span><span>Arduino</span><span>Capteurs</span>
+            </div>
+            <button class="modal-close-btn" onclick="closeModal('tinkercadModal')">Fermer</button>
+        </div>
+    </div>
+
+    <div id="patisserieModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('patisserieModal')">&times;</span>
+            <h2>Publicité pour une Pâtisserie</h2>
+            <img src="6.jpg" alt="Pâtisserie">
+            <p>Création d'une vidéo promotionnelle pour une pâtisserie, visant à mettre en valeur la qualité des produits.</p>
+            <ul>
+                <li>✍️ Conceptualisation avec storyboard et script</li>
+                <li>🎬 Tournage et montage avec Adobe Premiere Pro</li>
+                <li>✨ Effets visuels avec Adobe After Effects</li>
+                <li>🎨 Design graphique personnalisé</li>
+            </ul>
+            <p>Ce projet démontre mes compétences en montage vidéo, en motion design, et ma capacité à produire du contenu marketing de haute qualité.</p>
+            <div class="tags">
+                <span>Premiere Pro</span><span>After Effects</span><span>Design graphique</span>
+            </div>
+            <button class="modal-close-btn" onclick="closeModal('patisserieModal')">Fermer</button>
+        </div>
+    </div>
+
+    <div id="titanicModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('titanicModal')">&times;</span>
+            <h2>Prévision des survivants du Titanic</h2>
+            <img src="7.jpg" alt="Titanic">
+            <p>Projet de science des données se concentrant sur l'analyse de l'ensemble de données des passagers du Titanic et la construction d'un modèle de prédiction.</p>
+            <ul>
+                <li>📊 Analyse exploratoire des données (EDA)</li>
+                <li>🧠 Entraînement de plusieurs algorithmes de classification</li>
+                <li>📈 Évaluation de la performance avec métriques</li>
+            </ul>
+            <p>Ce projet démontre mes compétences en traitement des données, en modélisation prédictive, et en déploiement de solutions de Machine Learning.</p>
+            <div class="tags">
+                <span>Python</span><span>Scikit-learn</span><span>Pandas</span><span>NumPy</span>
+            </div>
+            <button class="modal-close-btn" onclick="closeModal('titanicModal')">Fermer</button>
+        </div>
+    </div>
+
+    <div id="gamingModal" class="modal">
   <div class="modal-content">
-    <span class="close" onclick="closeModal('unityModal')">&times;</span>
-    <h2>Jeu de Survie 3D — Unity</h2>
-    <img src="4.webp" alt="Unity Survival Game" style="max-width:100%; border-radius:10px; margin-bottom:15px;">
-    
-    <p>Développement d’un jeu de survie immersif avec Unity, où le joueur doit explorer, récolter des ressources et survivre dans un environnement hostile.</p>
+    <span class="close" onclick="closeModal('gamingModal')">&times;</span>
+    <h2>Youssef Gaming Zone — Site Web Gaming & Programs</h2>
+    <img src="9.png" alt="Youssef Gaming Zone" style="max-width:100%; border-radius:10px; margin-bottom:15px;">
     <p>
-      Fonctionnalités :
+      Ce projet est une plateforme où les utilisateurs peuvent :
       <ul>
-        <li>🌍 Monde ouvert avec terrains réalistes</li>
-        <li>🥩 Système de survie (faim, soif, énergie)</li>
-        <li>🏗️ Crafting et construction</li>
-        <li>👾 IA ennemie avec comportements dynamiques</li>
-        <li>🎶 Effets visuels et sonores immersifs</li>
+        <li>🎮 Télécharger des jeux PC gratuitement</li>
+        <li>⚙️ Trouver des logiciels & outils utiles avec 1 seul clic</li>
+        <li>🔥 Interface moderne, rapide & responsive</li>
+        <li>🌐 Hébergé sur Vercel : <strong>youssef-gaming-zone.vercel.app</strong></li>
       </ul>
     </p>
-    <div class="tags">
-      <span>Unity</span>
-      <span>C#</span>
-      <span>Blender</span>
-      <span>Photoshop</span>
-    </div>
-    <button class="modal-close-btn" onclick="closeModal('unityModal')">Fermer</button>
-  </div>
-</div>
-
-<div id="tinkercadModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('tinkercadModal')">&times;</span>
-    <h2>Projet Smart Home avec Tinkercad</h2>
-    <img src="5.png" alt="Smart Home Tinkercad" style="max-width:100%; border-radius:10px; margin-bottom:15px;">
-    <p>Ce projet simule un système de maison intelligente à l'aide de l'environnement de simulation en ligne Tinkercad Circuits.</p>
     <p>
-      Le système intègre divers composants :
-      <ul>
-        <li>💡 **Éclairage intelligent** : Un capteur de luminosité (photoresistor) ajuste automatiquement l'intensité d'une LED en fonction de la lumière ambiante.</li>
-        <li>🚨 **Système de sécurité** : Un capteur de mouvement (PIR) active une alarme sonore (buzzer) et une LED en cas de détection.</li>
-        <li>🌡️ **Thermostat connecté** : Un capteur de température (TMP36) contrôle un ventilateur (moteur DC) pour maintenir une température confortable.</li>
-      </ul>
-    </p>
-    <p>
-      Ce projet démontre mes compétences en **IoT**, en **électronique numérique** et en **programmation de microcontrôleurs** (Arduino). Il est idéal pour illustrer la conception et la simulation de systèmes embarqués.
+      L’objectif du site est de faciliter l'accès aux jeux et aux programmes sans publicités intrusives, tout en offrant une interface claire, rapide et ergonomique.
     </p>
     <div class="tags">
-      <span>Tinkercad</span>
-      <span>IoT</span>
-      <span>Arduino</span>
-      <span>Capteurs</span>
-      <span>Électronique</span>
+      <span>HTML</span>
+      <span>CSS</span>
+      <span>JavaScript</span>
+      <span>API</span>
+      <span>Vercel</span>
     </div>
-    <button class="modal-close-btn" onclick="closeModal('tinkercadModal')">Fermer</button>
+    <button class="modal-close-btn" onclick="closeModal('gamingModal')">Fermer</button>
   </div>
 </div>
 
-<div id="patisserieModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('patisserieModal')">&times;</span>
-    <h2>Publicité pour une Pâtisserie</h2>
-    <img src="6.jpg" alt="Pâtisserie Publicité" style="max-width:100%; border-radius:10px; margin-bottom:15px;">
-    <p>Ce projet consiste en la conception et la réalisation d’une vidéo promotionnelle pour une pâtisserie, visant à mettre en valeur la qualité des produits et l'ambiance chaleureuse du lieu. L’objectif était de créer un contenu visuellement attrayant pour les réseaux sociaux et le site web.</p>
-    <p>
-      Le processus a inclus plusieurs étapes :
-      <ul>
-        <li>✍️ **Conceptualisation** : Création d'un storyboard et d'un script pour définir le message et l'esthétique.</li>
-        <li>🎬 **Tournage et montage** : Utilisation d'**Adobe Premiere Pro** pour l'assemblage des séquences, l'ajout de transitions et la synchronisation audio.</li>
-        <li>✨ **Effets visuels** : Intégration d'animations et d'effets spéciaux avec **Adobe After Effects** pour dynamiser la vidéo (titres animés, logos, effets de particules).</li>
-        <li>🎨 **Design graphique** : Conception d'éléments visuels personnalisés comme le logo et les bannières.</li>
-      </ul>
-    </p>
-    <p>Ce projet démontre mes compétences en **montage vidéo**, en **motion design**, et ma capacité à produire du contenu marketing de haute qualité.</p>
-    <div class="tags">
-      <span>Adobe Premiere Pro</span>
-      <span>Adobe After Effects</span>
-      <span>Design graphique</span>
-      <span>Storyboarding</span>
-      <span>Marketing digital</span>
-    </div>
-    <button class="modal-close-btn" onclick="closeModal('patisserieModal')">Fermer</button>
-  </div>
-</div>
 
-<div class="project-card">
-  <img src="7.jpg" alt="Titanic">
-  <div class="project-info">
-    <h3>Prévision des survivants du Titanic</h3>
-    <p>Utilisation d'algorithmes de Machine Learning pour prédire la survie des passagers du Titanic.</p>
-    <div class="tags">
-      <span>Python</span><span>Scikit-learn</span><span>Pandas</span><span>NumPy</span><span>Matplotlib</span>
-    </div>
-    <button class="details-link" onclick="openModal('titanicModal')">Voir les détails →</button>
-  </div>
-</div>
+    <!-- Stats Section -->
+    <section id="statistiques" class="stats-section section-animate">
+        <h2 class="section-title"><span>&lt;</span> Statistiques <span>/&gt;</span></h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <i class="fas fa-project-diagram"></i>
+                <h3>+6</h3>
+                <p>Projets Terminés</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-calendar-alt"></i>
+                <h3>4</h3>
+                <p>Années d'Expérience</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-code"></i>
+                <h3>10+</h3>
+                <p>Technologies Maîtrisées</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-smile"></i>
+                <h3>5+</h3>
+                <p>Clients Satisfaits</p>
+            </div>
+        </div>
+    </section>
 
-<div id="titanicModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('titanicModal')">&times;</span>
-    <h2>Prévision des survivants du Titanic</h2>
-    <img src="7.jpg" alt="Projet Titanic" style="max-width:100%; border-radius:10px; margin-bottom:15px;">
-    <p>Ce projet de science des données se concentre sur l'analyse de l'ensemble de données des passagers du Titanic et la construction d'un modèle de prédiction pour déterminer quels facteurs ont le plus influencé la survie.</p>
-    <p>
-      Le processus a inclus plusieurs étapes clés :
-      <ul>
-        <li>📊 **Analyse exploratoire des données (EDA)** : Nettoyage et préparation des données, gestion des valeurs manquantes, et exploration des corrélations entre les variables (sexe, âge, classe de passager) et le taux de survie.</li>
-        <li>🧠 **Sélection du modèle** : Entraînement de plusieurs algorithmes de classification comme la **régression logistique**, les **forêts aléatoires**, et les **machines à vecteurs de support (SVM)** pour trouver le meilleur modèle.</li>
-        <li>📈 **Évaluation de la performance** : Utilisation de métriques telles que la précision et le score F1 pour évaluer l'efficacité du modèle.</li>
-      </ul>
-    </p>
-    <p>Ce projet démontre mes compétences en **traitement des données**, en **modélisation prédictive**, et en **déploiement de solutions de Machine Learning**.</p>
-    <div class="tags">
-      <span>Python</span>
-      <span>Scikit-learn</span>
-      <span>Pandas</span>
-      <span>NumPy</span>
-      <span>Matplotlib</span>
-      <span>Jupyter Notebook</span>
-    </div>
-    <button class="modal-close-btn" onclick="closeModal('titanicModal')">Fermer</button>
-  </div>
-</div>
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section section-animate">
+        <h2 class="section-title"><span>&lt;</span> Contact <span>/&gt;</span></h2>
+        <div class="contact-container">
+            <div class="contact-left">
+                <h3>Prenons contact</h3>
+                <p>Vous avez un projet ou une idée ? N'hésitez pas à me contacter !</p>
+                <p><i class="fas fa-envelope"></i> nawaliyoussef62@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +216 51079539</p>
+                <a href="https://www.linkedin.com/in/youssef-nawali-a76386346/" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+            <form class="contact-form">
+                <label for="name">Nom</label>
+                <input type="text" id="name" name="name" required>
 
-</section>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
 
-<section id="statistiques" class="stats-section section-animate">
-  <h2 class="section-title"><span>&lt;</span> Statistiques <span>/&gt;</span></h2>
-  <div class="stats-grid">
-    <div class="stat-card">
-      <i class="fas fa-project-diagram"></i>
-      <h3>5</h3>
-      <p>Projets Terminés</p>
-    </div>
-    <div class="stat-card">
-      <i class="fas fa-calendar-alt"></i>
-      <h3>4</h3>
-      <p>Années d'Expérience</p>
-    </div>
-    <div class="stat-card">
-      <i class="fas fa-code"></i>
-      <h3>10</h3>
-      <p>Technologies Maîtrisées</p>
-    </div>
-    <div class="stat-card">
-      <i class="fas fa-smile"></i>
-      <h3>5</h3>
-      <p>Clients Satisfaits</p>
-    </div>
-  </div>
-</section>
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
 
-<section id="contact" class="contact-section section-animate">
-  <h2 class="section-title"><span>&lt;</span> Contact <span>/&gt;</span></h2>
-  <div class="contact-container">
-    <div class="contact-left">
-      <h3>Prenons contact</h3>
-      <p>Vous avez un projet ou une idée ? N’hésitez pas à me contacter !</p>
-      <p><i class="fas fa-envelope"></i> nawaliyoussef62@gmail.com</p>
-      <p><i class="fas fa-phone"></i> +216 51079539</p>
-      <a href="https://www.linkedin.com/in/youssef-nawali-a76386346/" target="_blank" title="Mon LinkedIn">
-    <i class="fab fa-linkedin"></i>
-  </a>
-    </div>
-    <form class="contact-form">
-      <label for="name">Nom</label>
-      <input type="text" id="name" name="name" required>
+                <button type="submit">Envoyer</button>
+            </form>
+        </div>
+    </section>
 
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" required>
+    <!-- Scroll to Top -->
+    <a href="#accueil" class="scroll-top" title="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </a>
 
-      <label for="message">Message</label>
-      <textarea id="message" name="message" rows="5" required></textarea>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Youssef Nawali. Tous droits réservés.</p>
+        <div class="footer-links">
+            <a href="#accueil">Accueil</a>
+            <a href="#projets">Projets</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </footer>
 
-      <button type="submit">Envoyer</button>
-    </form>
-  </div>
-</section>
+    <script>
+        // Particles Animation
+        function createParticles() {
+            const bg = document.querySelector('.animated-bg');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.width = Math.random() * 5 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.background = `rgba(${Math.random() > 0.5 ? '0, 242, 254' : '240, 147, 251'}, ${Math.random() * 0.5 + 0.2})`;
+                particle.style.animation = `float ${Math.random() * 10 + 10}s ease-in-out infinite`;
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                bg.appendChild(particle);
+            }
+        }
+        createParticles();
 
-<a href="#accueil" class="scroll-top" title="Retour en haut">
-  <i class="fas fa-arrow-up"></i>
-</a>
+        // Loader
+        window.addEventListener("load", function () {
+            const loader = document.getElementById("loader");
+            loader.style.opacity = "0";
+            setTimeout(() => loader.style.display = "none", 600);
+        });
 
+        // Theme Toggle
+        const themeSwitch = document.getElementById('theme-switch');
+        themeSwitch.addEventListener('change', () => {
+            document.body.classList.toggle('light-mode');
+        });
 
-<footer class="footer">
-  <p>&copy; 2025 Youssef Nawali. Tous droits réservés.</p>
-  <div class="footer-links">
-    <a href="#accueil">Accueil</a>
-    <a href="#projets">Projets</a>
-    <a href="#contact">Contact</a>
-  </div>
-</footer>
+        // Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
 
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                const navLinks = document.querySelector('.nav-links');
+                if (window.innerWidth <= 768 && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
 
+        // Scroll Animation
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+
+        document.querySelectorAll('.section-animate').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Modal Functions
+        function openModal(id) {
+            document.getElementById(id).style.display = 'block';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        window.addEventListener('click', function(event) {
+            document.querySelectorAll('.modal').forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+
+        // Contact Form
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Message envoyé avec succès! (Démo)');
+            this.reset();
+        });
+    </script>
 </body>
-
-<script>
-  const themeSwitch = document.getElementById('theme-switch');
-
-  themeSwitch.addEventListener('change', () => {
-    document.body.classList.toggle('light-mode');
-    localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
-  });
-
-  window.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-      document.body.classList.add('light-mode');
-      themeSwitch.checked = true;
-    }
-  });
-</script>
-
-<script>
-  function toggleMenu() {
-    const navLinks = document.querySelector('nav ul');
-    navLinks.classList.toggle('active');
-  }
-</script>
-
-<script>
-  function toggleMenu() {
-    const navLinks = document.querySelector('.nav-links');
-    navLinks.classList.toggle('active');
-  }
-
-  // Fermer le menu après clic sur un lien (mobile uniquement)
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-      const navLinks = document.querySelector('.nav-links');
-      if (window.innerWidth <= 768 && navLinks.classList.contains('active')) {
-        navLinks.classList.remove('active');
-      }
-    });
-  });
-</script>
-
-<script>
-  window.addEventListener("load", function () {
-    const loader = document.getElementById("loader");
-    loader.style.opacity = "0";
-    setTimeout(() => loader.style.display = "none", 600);
-  });
-</script>
-
-<script>
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  });
-
-  document.querySelectorAll('.section-animate').forEach(section => {
-    observer.observe(section);
-  });
-</script>
-
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const text = "Bonjour, je suis Youssef";
-    const el = document.querySelector(".typewriter-text");
-    el.textContent = text;
-  });
-</script>
-
-<script>
-  function openModal(id) {
-    document.getElementById(id).style.display = 'block';
-  }
-
-  function closeModal(id) {
-    document.getElementById(id).style.display = 'none';
-  }
-
-  // Fermer en cliquant en dehors
-  window.addEventListener('click', function(event) {
-    document.querySelectorAll('.modal').forEach(modal => {
-      if (event.target === modal) {
-        modal.style.display = 'none';
-      }
-    });
-  });
-</script>
-
-
 </html>
