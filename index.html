@@ -1122,6 +1122,32 @@
                     <button class="details-link" onclick="openModal('gamingModal')">Voir les détails →</button>
                 </div>
             </div>
+
+            <!-- NEW PROJECT 8 - Client Designer Graphics -->
+            <div class="project-card">
+                <img src="10.png" alt="Client Designer Graphics">
+                <div class="project-info">
+                    <h3>Client Designer Graphics</h3>
+                    <p>Projet de design graphique personnalisé créé pour un client, incluant branding, identité visuelle et supports de communication.</p>
+                    <div class="tags">
+                        <span>Photoshop</span><span>Illustrator</span><span>Branding</span><span>UI/UX</span>
+                    </div>
+                    <button class="details-link" onclick="openModal('clientDesignerModal')">Voir les détails →</button>
+                </div>
+            </div>
+
+            <!-- NEW PROJECT 9 - Ramadan Prayer Times Interface -->
+            <div class="project-card">
+                <img src="11.png" alt="Ramadan Prayer Times">
+                <div class="project-info">
+                    <h3>Interface Horaires de Prière Ramadan</h3>
+                    <p>Application web interactive affichant les horaires de prière incluant l'Imsak pour le mois sacré de Ramadan.</p>
+                    <div class="tags">
+                        <span>React</span><span>API</span><span>Vercel</span><span>Responsive</span>
+                    </div>
+                    <button class="details-link" onclick="openModal('ramadanModal')">Voir les détails →</button>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1234,32 +1260,89 @@
     </div>
 
     <div id="gamingModal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="closeModal('gamingModal')">&times;</span>
-    <h2>Youssef Gaming Zone — Site Web Gaming & Programs</h2>
-    <img src="9.png" alt="Youssef Gaming Zone" style="max-width:100%; border-radius:10px; margin-bottom:15px;">
-    <p>
-      Ce projet est une plateforme où les utilisateurs peuvent :
-      <ul>
-        <li>🎮 Télécharger des jeux PC gratuitement</li>
-        <li>⚙️ Trouver des logiciels & outils utiles avec 1 seul clic</li>
-        <li>🔥 Interface moderne, rapide & responsive</li>
-        <li>🌐 Hébergé sur Vercel : <strong>youssef-gaming-zone.vercel.app</strong></li>
-      </ul>
-    </p>
-    <p>
-      L’objectif du site est de faciliter l'accès aux jeux et aux programmes sans publicités intrusives, tout en offrant une interface claire, rapide et ergonomique.
-    </p>
-    <div class="tags">
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-      <span>API</span>
-      <span>Vercel</span>
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('gamingModal')">&times;</span>
+            <h2>Youssef Gaming Zone — Site Web Gaming & Programs</h2>
+            <img src="9.png" alt="Youssef Gaming Zone" style="max-width:100%; border-radius:10px; margin-bottom:15px;">
+            <p>
+                Ce projet est une plateforme où les utilisateurs peuvent :
+            <ul>
+                <li>🎮 Télécharger des jeux PC gratuitement</li>
+                <li>⚙️ Trouver des logiciels & outils utiles avec 1 seul clic</li>
+                <li>🔥 Interface moderne, rapide & responsive</li>
+                <li>🌐 Hébergé sur Vercel : <strong>youssef-gaming-zone.vercel.app</strong></li>
+            </ul>
+            </p>
+            <p>
+                L'objectif du site est de faciliter l'accès aux jeux et aux programmes sans publicités intrusives, tout en offrant une interface claire, rapide et ergonomique.
+            </p>
+            <div class="tags">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+                <span>API</span>
+                <span>Vercel</span>
+            </div>
+            <button class="modal-close-btn" onclick="closeModal('gamingModal')">Fermer</button>
+        </div>
     </div>
-    <button class="modal-close-btn" onclick="closeModal('gamingModal')">Fermer</button>
-  </div>
-</div>
+
+    <!-- NEW MODAL - Client Designer Graphics -->
+    <div id="clientDesignerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('clientDesignerModal')">&times;</span>
+            <h2>Client Designer Graphics</h2>
+            <img src="10.png">
+            <p>Projet complet de design graphique réalisé pour un client, comprenant la création d'une identité visuelle cohérente et professionnelle.</p>
+            <ul>
+                <li>🎨 Création de logo et charte graphique complète</li>
+                <li>📱 Design d'interfaces utilisateur modernes et intuitives</li>
+                <li>🖼️ Supports de communication (flyers, cartes de visite, bannières)</li>
+                <li>✨ Illustrations personnalisées et assets graphiques</li>
+                <li>🎯 Stratégie de branding et positionnement visuel</li>
+            </ul>
+            <p>Ce projet démontre ma maîtrise des outils de design professionnel (Adobe Creative Suite) et ma capacité à traduire les besoins d'un client en solutions visuelles impactantes. L'identité créée reflète les valeurs de la marque tout en assurant une cohérence visuelle sur tous les supports.</p>
+             <p><strong>🌐 Lien du projet :</strong> <a href="https://ghada-ben-abid-portfolio.vercel.app" target="_blank" style="color: var(--primary);">Ghada Portfolio</a></p>
+            <div class="tags">
+                <span>Photoshop</span>
+                <span>Illustrator</span>
+                <span>Branding</span>
+                <span>UI/UX</span>
+                <span>InDesign</span>
+            </div>
+            <button class="modal-close-btn" onclick="closeModal('clientDesignerModal')">Fermer</button>
+        </div>
+    </div>
+
+    <!-- NEW MODAL - Ramadan Prayer Times -->
+    <div id="ramadanModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('ramadanModal')">&times;</span>
+            <h2>Interface Horaires de Prière Ramadan</h2>
+            <img src="11.png" alt="Ramadan Prayer Times">
+            <p>Application web moderne et élégante développée pour afficher les horaires de prière musulmane avec une attention particulière au mois béni de Ramadan.</p>
+            <ul>
+                <li>🕌 Affichage des 5 prières quotidiennes (Fajr, Dhuhr, Asr, Maghrib, Isha)</li>
+                <li>🌙 Horaire de l'Imsak (début du jeûne) pour le Ramadan</li>
+                <li>📍 Géolocalisation automatique pour des horaires précis</li>
+                <li>⏰ Compte à rebours en temps réel jusqu'à la prochaine prière</li>
+                <li>🎨 Interface élégante avec thème islamique</li>
+                <li>📱 Design responsive adapté à tous les écrans</li>
+                <li>🌐 Déployé sur Vercel pour un accès rapide et fiable</li>
+            </ul>
+            <p>L'application utilise une API de prière pour récupérer les horaires précis selon la localisation de l'utilisateur. L'interface a été conçue avec soin pour offrir une expérience utilisateur sereine et spirituelle, particulièrement adaptée au mois sacré de Ramadan.</p>
+            <p><strong>🌐 Lien du projet :</strong> <a href="https://baraket-ramadan.vercel.app" target="_blank" style="color: var(--primary);">Ramadan tabarok interface</a></p>
+            <div class="tags">
+                <span>React</span>
+                <span>JavaScript</span>
+                <span>API</span>
+                <span>Vercel</span>
+                <span>Responsive Design</span>
+                <span>Geolocation</span>
+            </div>
+            <button class="modal-close-btn" onclick="closeModal('ramadanModal')">Fermer</button>
+        </div>
+    </div>
 
     <!-- Stats Section -->
     <section id="statistiques" class="stats-section section-animate">
@@ -1267,7 +1350,7 @@
         <div class="stats-grid">
             <div class="stat-card">
                 <i class="fas fa-project-diagram"></i>
-                <h3>+6</h3>
+                <h3>+8</h3>
                 <p>Projets Terminés</p>
             </div>
             <div class="stat-card">
@@ -1295,7 +1378,7 @@
             <div class="contact-left">
                 <h3>Prenons contact</h3>
                 <p>Vous avez un projet ou une idée ? N'hésitez pas à me contacter !</p>
-                <p><i class="fas fa-envelope"></i> nawaliyoussef62@gmail.com</p>
+                <p><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1e707f697f727767716b6d6d7b78282c5e79737f7772307d7173">[email&#160;protected]</a></p>
                 <p><i class="fas fa-phone"></i> +216 51079539</p>
                 <a href="https://www.linkedin.com/in/youssef-nawali-a76386346/" target="_blank" title="LinkedIn">
                     <i class="fab fa-linkedin"></i>
@@ -1331,7 +1414,7 @@
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Particles Animation
         function createParticles() {
             const bg = document.querySelector('.animated-bg');
@@ -1411,9 +1494,9 @@
         // Contact Form
         document.querySelector('.contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Message envoyé avec succès! (Démo)');
+            alert('Merci pour votre message ! Je vous répondrai dès que possible.');
             this.reset();
-        });
+        });             
     </script>
 </body>
 </html>
